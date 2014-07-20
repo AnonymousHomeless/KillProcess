@@ -4,7 +4,7 @@
 #include <TLHelp32.h>
 
 void locateProcess();				//查看进程
-void killProcess(int iProcessId);	//杀死进程
+void killProcess(int iProcessId);		//杀死进程
 
 int main()
 {
@@ -51,18 +51,18 @@ void locateProcess()
 	if (!Process32First(hSnapshot, &pe32))               
 	{
 		printf("显示进程失败！");
-		CloseHandle(hSnapshot);   //释放句柄
+		CloseHandle(hSnapshot);   	//释放句柄
 	}
 
 	//显示接下的所有进程
 	printf("进程ID\t父进程\t线程数\t优先级\t进程名\n"); 
 	while(Process32Next(hSnapshot, &pe32))
 	{
-		printf("%u\t", pe32.th32ProcessID);		      //进程ID
-		printf("%u\t", pe32.th32ParentProcessID);	  //父进程ID
-		printf("%d\t", pe32.cntThreads);			  //线程数
-		printf("%d\t", pe32.pcPriClassBase);		  //基本优先级
-		printf("%S\t\n",pe32.szExeFile);				  //进程名
+		printf("%u\t", pe32.th32ProcessID);		      	 //进程ID
+		printf("%u\t", pe32.th32ParentProcessID);		 //父进程ID
+		printf("%d\t", pe32.cntThreads);			 //线程数
+		printf("%d\t", pe32.pcPriClassBase);		  	 //基本优先级
+		printf("%S\t\n",pe32.szExeFile);			 //进程名
 	}
 
 	CloseHandle(hSnapshot);
